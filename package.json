@@ -1,0 +1,21 @@
+{
+  "name": "react-router-slide-animation",
+  "version": "1.0.1",
+  "description": "The react router slides around the animation.\nBased on react-router 4 and react-transition-group",
+  "main": "index.js",
+  "keywords": ["react","react-router","react-transition-group","router-slide-animation"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/axel10/react-router-slide-animation.git"
+  },
+  "scripts": {
+  },
+  "author": "axel10",
+  "license": "MIT",
+  "dependencies": {
+    "react-router": "^4.3.1",
+    "react": "^16.4.2",
+    "history": "^4.7.2",
+    "react-transition-group": "^2.4.0"
+  }
+}
