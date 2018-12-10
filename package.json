@@ -1,6 +1,6 @@
 {
   "name": "react-router-slide-animation",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "The react router slides around the animation.\nBased on react-router 4 and react-transition-group",
   "main": "index.js",
   "keywords": ["react","react-router","react-transition-group","router-slide-animation"],

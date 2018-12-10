@@ -1,5 +1,6 @@
 # React Slide Animation Router
 
+![avatar](https://s1.ax1x.com/2018/12/10/FJCJv4.gif)
 
 react router左右滑动动画的封装。
 基于react-router 4.3.1和react-transition-group 2.4.0
