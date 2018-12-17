@@ -40,20 +40,35 @@ const defaults = {
   classNames: 'slide-router'
 };
 
+window.onscroll = () => {
+  console.log(window.scrollY);
+};
+
+let currentScrollPosition = 0;
+const syncScrollPosition = () => {
+  currentScrollPosition = window.scrollY;
+};
+
 export default class SlideRouter extends React.Component <IProps> {
 
-  public componentDidMount (): void {
+  public componentDidMount(): void {
 
     const { history, routeAnimationDuration, classNames = defaults.classNames, wrapId = defaults.wrapId, isRememberPosition = true } = this.props;
     const baseStyle = document.createElement('style');
     baseStyle.innerHTML = `
-      .${classNames}-enter,.${classNames}-enter-active{
+         .${classNames}-enter{
+    position: fixed;
+    opacity: 0;
+    transition : left 1s;
+  }
+
+     .${classNames}-enter-active{
     position: relative;
     opacity: 0;
     transition : left 1s;
   }
   .${classNames}-exit,.${classNames}-exit-active{
-    position: absolute;
+    position: relative;
     top: 0;
     left: 0;
     z-index: 1000;
@@ -70,9 +85,14 @@ export default class SlideRouter extends React.Component <IProps> {
 
     let currentHistoryPosition = historyKeys.indexOf(history.location.key);
     currentHistoryPosition = currentHistoryPosition === -1 ? 0 : currentHistoryPosition;
+
+    window.addEventListener('popstate', () => {
+      console.log('pop');
+      console.log('window.y ' + window.scrollY);
+    });
+
     history.listen((() => {
       if (lastPathname === history.location.pathname) { return; }
-
       if (!history.location.key) {  // 目标页为初始页
         historyKeys[0] = '';
       }
@@ -82,6 +102,7 @@ export default class SlideRouter extends React.Component <IProps> {
       }
       const routerWrap = document.getElementById(wrapId);
       const originPage = routerWrap.children[routerWrap.children.length - 1] as HTMLElement;
+      console.log('child ' + routerWrap.children.length);
       const oPosition = originPage.style.position;
       setTimeout(() => { // 动画结束后还原相关属性
         document.body.style.overflowX = bodyOverflowX;
@@ -101,11 +122,15 @@ export default class SlideRouter extends React.Component <IProps> {
         return;
       }
       const { action } = history;
-
       const currentRouterKey = history.location.key ? history.location.key : '';
       const oldScrollTop = window.scrollY;
-      originPage.style.top = -oldScrollTop + 'px'; // 防止页面滚回顶部
-      originPage.style.position = 'fixed';
+      if (action === 'POP') { // 为POP时为了兼容qq浏览器的x5内核而进行特殊处理（x5内核下新页面会先进入文档流再触发listen函数）
+        originPage.style.position = 'fixed';
+        originPage.style.top = -currentScrollPosition + 'px'; // 防止页面滚回顶部
+      } else {
+        originPage.style.position = 'fixed';
+        originPage.style.top = -oldScrollTop + 'px'; // 防止页面滚回顶部
+      }
       setTimeout(() => { // 新页面已插入到旧页面之前
         isAnimating = true;
         const wrap = document.getElementById(wrapId);
@@ -121,14 +146,16 @@ export default class SlideRouter extends React.Component <IProps> {
         if (action === 'PUSH' || isForward) {
           positionRecord[lastPathname] = oldScrollTop; // 根据之前记录的pathname来记录旧页面滚动位置
           window.scrollTo(0, 0);  // 如果是点击前进按钮或者是history.push则滚动位置归零
-
           if (action === 'PUSH') {
             historyKeys = historyKeys.slice(0, currentHistoryPosition + 1);
             historyKeys.push(currentRouterKey); // 如果是history.push则清除无用的key
           }
         } else {
           if (isRememberPosition) {
-            window.scrollTo(0, positionRecord[currentPath]); // 滚动到之前记录的位置
+            setTimeout(() => {
+              window.scrollTo(0, positionRecord[currentPath]); // 滚动到之前记录的位置
+              console.log('scrollto' + positionRecord[currentPath]);
+            }, 50);
           }
 
           // 删除滚动记录列表中所有子路由滚动记录
@@ -165,9 +192,6 @@ export default class SlideRouter extends React.Component <IProps> {
             newPage.style.opacity = '1'; // 防止页面闪烁
             newPage.style.left = '0';
             oldPage.style.left = '-100%';
-
-            console.log(newPage.style.left);
-            console.log(oldPage.style.left);
           }, delay);
         } else {
           newPage.style.left = '-100%';
@@ -184,11 +208,11 @@ export default class SlideRouter extends React.Component <IProps> {
         }
         currentHistoryPosition = historyKeys.indexOf(currentRouterKey); // 记录当前history.location.key在historyKeys中的位置
         lastPathname = history.location.pathname;// 记录当前pathname作为滚动位置的键
-      });
+      }, 50);
     }));
   }
 
-  public render () {
+  public render() {
     const { wrapId = defaults.wrapId, classNames = defaults.classNames } = this.props;
     const { location } = this.props.history;
 
@@ -196,6 +220,7 @@ export default class SlideRouter extends React.Component <IProps> {
       <React.Fragment>
         <TransitionGroup id={wrapId}>
           <CSSTransition classNames={classNames} timeout={this.props.routeAnimationDuration}
+                         onEnter={syncScrollPosition}
                          key={location.key} {...this.props.transitionProps}>
             <Switch location={location}>
               {this.props.children}
