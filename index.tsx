@@ -14,15 +14,12 @@ interface ISlideTransitionProps {
   mountOnEnter?: boolean;
   unmountOnExit?: boolean;
   addEndListener?: EndHandler;
-  onEnter?: EnterHandler;
   onEntering?: EnterHandler;
   onEntered?: EnterHandler;
   onExit?: ExitHandler;
   onExiting?: ExitHandler;
   onExited?: ExitHandler;
-
   [prop: string]: any;
-
   children?: TransitionChildren;
 }
 
@@ -51,7 +48,7 @@ const syncScrollPosition = () => {
 
 export default class SlideRouter extends React.Component <IProps> {
 
-  public componentDidMount(): void {
+  public componentDidMount (): void {
 
     const { history, routeAnimationDuration, classNames = defaults.classNames, wrapId = defaults.wrapId, isRememberPosition = true } = this.props;
     const baseStyle = document.createElement('style');
@@ -212,7 +209,7 @@ export default class SlideRouter extends React.Component <IProps> {
     }));
   }
 
-  public render() {
+  public render () {
     const { wrapId = defaults.wrapId, classNames = defaults.classNames } = this.props;
     const { location } = this.props.history;
 

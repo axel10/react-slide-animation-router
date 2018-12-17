@@ -38,11 +38,17 @@ export const routes = () => {
 # Api
 
 ### Props
-| 名称 | 描述 | 默认值
-| --- | --- | ---
-| routeAnimationDuration | 路由动画的持续时间 | -
-| history | history对象 | -
-| wrapId | 路由容器的id | slide-router-wrap
-| classNames | 路由动画的类名 | slide-router
-| isRememberPosition | 是否记忆滚动位置 | true
-| transitionProps | react-transition-group的参数 | -
+| 名称 | 描述 | 类型 | 默认值
+| --- | --- | --- | ---
+| routeAnimationDuration | 路由动画的持续时间 | number | -
+| history | history对象 | object | -
+| wrapId | 路由容器的id | string | slide-router-wrap
+| classNames | 路由动画的类名 | string | slide-router
+| isRememberPosition | 是否记忆滚动位置 | bool | true
+| transitionProps | react-transition-group的参数 | object | -
+### 禁用动画：
+state中传入noAnimate即可
+
+    history.push('/your-path', { noAnimate: true })
+    history.pop('/your-path', { noAnimate: true })
+    history.replace('/your-path', { noAnimate: true })
