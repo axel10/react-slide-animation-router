@@ -38,14 +38,14 @@ const renderRouter = () => {
 # Api
 
 ### initSlideRouter options
-| 名称 | 描述 | 类型 | 默认值
+| key | detail | type | default
 | --- | --- | --- | ---
-| routeAnimationDuration | 路由动画的持续时间 | number | 350
-| history | history对象 | object | -
-| wrapId | 路由容器的id | string | slide-router-wrap
-| classNames | 路由动画的类名 | string | slide-router
-| isRememberPosition | 是否记忆滚动位置 | bool | true
-| transitionProps | react-transition-group的参数 | object | -
+| routeAnimationDuration | The duration of the route animation | number | 350
+| history | history object | object | -
+| wrapId | router container id | string | slide-router-wrap
+| classNames | router animation class name | string | slide-router
+| isRememberPosition | whether to remember the scroll position | bool | true
+| transitionProps | react-transition-group parameters | object | -
 ### disable animation：
 Pass in noAnimate in state
 
