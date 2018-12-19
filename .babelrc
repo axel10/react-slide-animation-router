@@ -1,0 +1,56 @@
+{
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "env",
+          {
+            "modules": "commonjs",
+            "useBuiltIns": "usage",
+            "debug": true
+          }
+        ],
+        "stage-2",
+        "react",
+        "jest"
+      ],
+      "plugins": [
+        "transform-es2015-modules-commonjs",
+        "transform-decorators-legacy",
+        [
+          "transform-runtime",
+          {
+            "helpers": false,
+            "polyfill": false,
+            "regenerator": true,
+            "moduleName": "babel-runtime"
+          }
+        ]
+      ]
+    }
+  },
+  "presets": [
+    [
+      "env",
+      {
+        "modules": false,
+        "useBuiltIns": "usage",
+        "debug": false
+      }
+    ],
+    "react",
+    "stage-2"
+  ],
+  "plugins": [
+    "transform-decorators-legacy",
+    [
+      "transform-runtime",
+      {
+        "helpers": false,
+        "polyfill": false,
+        "regenerator": true,
+        "moduleName": "babel-runtime"
+      }
+    ]
+  ]
+}

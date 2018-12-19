@@ -3,10 +3,8 @@
 ![avatar](https://s1.ax1x.com/2018/12/10/FJCJv4.gif)
 
 react router左右滑动动画的封装。
-基于react-router 4.3.1和react-transition-group 2.4.0
 
 The react router slides around the animation.   
-Based on react-router 4.3.1 and react-transition-group 2.4.0  
     
 # Usage
 ```bash
@@ -14,9 +12,13 @@ $ npm install react-slide-animation-router
 ```
 
 ```javascript
-import SlideRouter from 'react-slide-animation-router'
-import { createBrowserHistory } from 'history'
-const history = createBrowserHistory()
+import { Route, Router } from 'react-router-dom';
+import SlideRouter, { initSlideRouter } from '@/index';
+import { createBrowserHistory } from 'history';
+const history = createBrowserHistory();
+
+// 必须在创建路由之前调用initSlideRouter
+initSlideRouter();
 
 export const routes = () => {
   return (
@@ -40,7 +42,7 @@ export const routes = () => {
 ### Props
 | 名称 | 描述 | 类型 | 默认值
 | --- | --- | --- | ---
-| routeAnimationDuration | 路由动画的持续时间 | number | -
+| routeAnimationDuration | 路由动画的持续时间 | number | 350
 | history | history对象 | object | -
 | wrapId | 路由容器的id | string | slide-router-wrap
 | classNames | 路由动画的类名 | string | slide-router
