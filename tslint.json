@@ -12,9 +12,10 @@
       "no-this-assignment":false,
       "riple-equals":false,
       "no-var-requires":false,
-      "no-implicit-dependencies":[true,["src"]],
+      "no-implicit-dependencies":false,
       "no-submodule-imports":false,
-      "prefer-for-of":false
+      "prefer-for-of":false,
+      "semicolon": [true,"never"]
     },
     "rulesDirectory": []
 }

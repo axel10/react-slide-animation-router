@@ -1,38 +1,39 @@
-import { mount, shallow } from 'enzyme';
-import { createMemoryHistory } from "history";
-import * as React from 'react';
-import { Route, Router } from "react-router-dom";
-import Page1 from "../src/example/pages/Page1";
-import SlideRouter from "../src/index";
+import { mount, shallow } from 'enzyme'
+import { createMemoryHistory } from 'history'
+import * as React from 'react'
+import { Route, Router } from 'react-router-dom'
+import Page1 from '../src/example/pages/Page1'
+import SlideRouter, { initSlideRouter } from '../src/index'
 
-const history = createMemoryHistory();
+const history = createMemoryHistory()
 
 describe('A suite', () => {
   it('should true', () => {
-    expect(true).toBe(true);
-  });
+    expect(true).toBe(true)
+  })
+
+  initSlideRouter({history})
 
   const slideRouter = (
     <Router history={history}>
       <Route render={() => {
         return (
-          <SlideRouter history={history}>
+          <SlideRouter>
             <Route component={Page1} path={'/'} exact={true}/>
           </SlideRouter>
-        );
+        )
       }}/>
     </Router>
-  );
+  )
 
-
-  const routeWrap = mount(slideRouter).find('div#slide-router-wrap');
+  const routeWrap = mount(slideRouter).find('div#slide-router-wrap')
   it('should exist route wrap', () => {
-    expect(routeWrap.length).toEqual(1);
-  });
+    expect(routeWrap.length).toEqual(1)
+  })
 
   it('should has route page', () => {
-    expect(routeWrap.childAt(0).text().length>0).toBe(true);
-  });
+    expect(routeWrap.childAt(0).text().length > 0).toBe(true)
+  })
 
-  console.log(routeWrap.childAt(0).text());
-});
+  console.log(routeWrap.childAt(0).text())
+})
