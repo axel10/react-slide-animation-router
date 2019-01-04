@@ -217,7 +217,7 @@ export default class SlideRouter extends React.Component {
       <React.Fragment>
         <TransitionGroup id={wrapId}>
           <CSSTransition classNames={classNames} timeout={routeAnimationDuration}
-                         key={location.key} {...transitionProps}>
+                         key={location.pathname} {...transitionProps}>
             <Switch location={location}>
               {this.props.children}
             </Switch>
