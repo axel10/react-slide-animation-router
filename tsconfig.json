@@ -3,7 +3,7 @@
     "target": "ESNEXT",
     "module": "ESNext",
     "lib": [
-      "ES2017",
+      "es2017",
       "dom",
       "esnext.asynciterable"
     ],
