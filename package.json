@@ -21,13 +21,11 @@
   "author": "axel10",
   "license": "MIT",
   "dependencies": {
-    "history": "^4.7.2",
-    "react": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1",
-    "react-slide-animation-router": "^1.0.6",
-    "react-transition-group": "^2.4.0"
+    "history": "^4.9.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.0",
+    "react-transition-group": "^4.0.0"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.15",
@@ -41,6 +39,7 @@
     "@types/swiper": "^4.2.4",
     "@types/webpack": "^4.4.10",
     "@types/webpack-env": "^1.13.6",
+    "react-router-dom": "^5.0.0",
     "autoprefixer": "^9.1.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^10.0.1",
@@ -84,16 +83,16 @@
     "style-loader": "^0.22.1",
     "ts-jest": "^23.10.5",
     "ts-loader": "^4.5.0",
-    "tslint": "^5.11.0",
+    "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.14.0",
     "tslint-config-standard": "^7.1.0",
     "tslint-react": "^3.6.0",
-    "typescript": "^3.0.1",
+    "typescript": "^3.4.5",
     "url-loader": "^1.1.1",
     "webpack": "^4.18.0",
-    "webpack-bundle-analyzer": "^3.0.3",
+    "webpack-bundle-analyzer": "^3.3.2",
     "webpack-cli": "^3.1.0",
-    "webpack-dev-server": "^3.1.8",
+    "webpack-dev-server": "^3.3.1",
     "webpack-merge": "^4.1.4"
   }
 }

@@ -1,6 +1,6 @@
 import { History } from 'history'
 import * as React from 'react'
-import { Switch } from 'react-router'
+import { Switch } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import {
   EndHandler,

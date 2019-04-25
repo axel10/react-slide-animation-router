@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "ESNEXT",
     "module": "ESNext",
     "lib": [
       "es2017",
@@ -23,6 +23,9 @@
   },
   "exclude": [
     "node_modules"
+  ],
+  "include": [
+    "dist"
   ],
   "typeRoots": [
     "node_modules/@types"
